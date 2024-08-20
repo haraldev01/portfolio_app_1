@@ -1,0 +1,42 @@
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* must be redefined because css modules are isolated. */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.post {
+  opacity: 0;
+  animation: appear 0.3s ease-out calc(var(--index) * 0.05s) forwards;
+}
+
+.loadingPost {
+  opacity: 0;
+  animation:
+    appear 0.3s ease-out calc(var(--index) * 0.1s) forwards,
+    pulse 2s cubic-bezier(0.4, 0, 0.6, 1) calc(0.35s + var(--index) * 0.25s)
+      infinite;
+}
+
+.gradient {
+  mask-image: linear-gradient(#000f 50%, #0005 80%, #0000 95%);
+}
+
+.teaserButton::before {
+  transition-duration: var(--teaser-length-ms);
+}

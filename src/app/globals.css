@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+  @apply bg-pink-500/50;
+}
+
+@layer utilities {
+  .pause {
+    animation-play-state: paused;
+  }
+  /* custom backdrop classes as the basic Tailwind ones don't support mobile. */
+  .ss-backdrop-blur-bar {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .ss-backdrop-blur-player {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scroller {
+    /* --scrollbar-color-thumb: white;
+    --scrollbar-color-track: red; */
+    --scrollbar-color-thumb: hsl(var(--muted-foreground));
+    --scrollbar-color-track: hsl(var(--background));
+    --scrollbar-width: thin;
+    --scrollbar-width-legacy: 10px;
+  }
+
+  /* Modern browsers with `scrollbar-*` support */
+  @supports (scrollbar-width: auto) {
+    .scroller {
+      scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
+      scrollbar-width: var(--scrollbar-width);
+    }
+  }
+
+  /* Legacy browsers with `::-webkit-scrollbar-*` support */
+  @supports selector(::-webkit-scrollbar) {
+    .scroller::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-color-thumb);
+    }
+    .scroller::-webkit-scrollbar-track {
+      background: var(--scrollbar-color-track);
+    }
+    .scroller::-webkit-scrollbar {
+      max-width: var(--scrollbar-width-legacy);
+      max-height: var(--scrollbar-width-legacy);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+
+    /* When card color is updated, update viewPort theme color in root layout! */
+    --card: 330 10% 99%;
+    --card-foreground: 0 0% 5%;
+
+    --popover: 330 20% 98%;
+    --popover-foreground: 0 0% 5%;
+
+    --primary: 330 80% 60%;
+    --primary-foreground: 330 10% 95%;
+
+    --secondary: 330 80% 95%;
+    --secondary-foreground: 0 0% 5%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 330 80% 80%;
+    --accent-foreground: 330 13% 5%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 330 13% 91%;
+    --input: 0 0% 84%;
+    --ring: 0 0% 76%;
+
+    --radius: 0.375rem;
+  }
+
+  .dark {
+    --background: 320 7% 8%;
+    --foreground: 300 9% 98%;
+
+    /* When card color is updated, update viewPort theme color in root layout! */
+    --card: 320 6% 10%;
+    --card-foreground: 300 9% 98%;
+
+    --popover: 320 6% 10%;
+    --popover-foreground: 300 9% 98%;
+
+    --primary: 319 100% 77%;
+    --primary-foreground: 0 9% 2%;
+
+    --secondary: 323 8% 19%;
+    --secondary-foreground: 300 9% 98%;
+
+    --muted: 330 7% 20%;
+    --muted-foreground: 330 8% 60%;
+
+    --accent: 330 40% 40%;
+    --accent-foreground: 300 9% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 330 8% 20%;
+    --input: 323 9% 18%;
+    --ring: 319 100% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
